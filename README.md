@@ -49,24 +49,24 @@ Para acessar os repositórios com os códigos fonte dos projetos, basta clicar n
 - [Projeto - REST API (E-Commerce - Django)](https://github.com/Karimangfn/Programacao-Dinamica-Web-IFSP/tree/main/Projeto%20-%20REST%20API%20(E-Commerce%20-%20Django))
 </p>
 
-## ▶️ Como Executar Arquivos Web (HTML, CSS, JS)
+## ▶️ Como Executar Arquivos PHP  
 
-Basta abrir o arquivo `.html` em um navegador:  
-- **Método 1**: Clique duas vezes no arquivo `.html` para abrir no navegador padrão.  
+Diferente de arquivos HTML, o PHP precisa ser processado por um servidor. Veja abaixo as formas de executar arquivos PHP corretamente.  
 
-- **Método 2**: Abra manualmente no navegador:  
-  - **Google Chrome / Firefox / Edge**  
-    ```bash
-    Arraste e solte o arquivo na janela do navegador
-    ```
-  - **Ou abra pelo terminal (Linux/macOS)**:  
-    ```bash
-    xdg-open index.html
-    ```
-  - **No Windows (cmd/powershell)**:  
-    ```powershell
-    start index.html
-    ```
+### 🔹 Método 1: Usando o Servidor Embutido do PHP (Recomendado)  
+
+Se o PHP estiver instalado, use o servidor embutido para rodar os arquivos:  
+
+```bash
+# Navegue até a pasta do arquivo PHP  
+cd /caminho/para/seu/projeto  
+
+# Inicie o servidor local do PHP  
+php -S localhost:8000  
+
+# Acesse o arquivo pelo navegador  
+# Abra o navegador e digite:  
+# http://localhost:8000/arquivo.php
     
 ## 🚀 Tecnologias
 
