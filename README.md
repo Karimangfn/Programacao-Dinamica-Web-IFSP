@@ -55,7 +55,8 @@ Se o PHP estiver instalado, use o servidor embutido para rodar os arquivos:
 
 1. Navegue até a pasta do arquivo PHP  
 ```bash
-cd /caminho/para/seu/projeto  
+cd /caminho/para/seu/projeto
+```
 
 2. Inicie o servidor local do PHP
 ```sh
