@@ -35,7 +35,7 @@ O Curso Superior de Tecnologia em Análise e Desenvolvimento de Sistemas (TADS) 
 
 ## 📚 Disciplina
 
-A disciplina Programação Dinâmica Web aprofunda os conhecimentos acerca do desenvolvimento de aplicações web dinâmicas. Nela, é aprofundada a linguagem PHP, apresentando as principais características e técnicas para gerar conteúdo dinâmico e interativo no lado servidor, permitindo o desenvolvimento de aplicações de fácil manutenção, eficientes, eficazes e bem organizadas. Além disso, são abordados conceitos importantes como manipulação de dados em tempo real e integração com bancos de dados, com o uso de frameworks como Laravel e Symfony para facilitar a construção de sistemas escaláveis e modernos.
+A disciplina Programação Dinâmica Web aprofunda os conhecimentos acerca do desenvolvimento de aplicações web dinâmicas. Nela, é aprofundada a linguagem PHP, apresentando as principais características e técnicas para gerar conteúdo dinâmico e interativo no lado servidor, permitindo o desenvolvimento de aplicações de fácil manutenção, eficientes, eficazes e bem organizadas.
 
 ## 💻 Projetos
 
