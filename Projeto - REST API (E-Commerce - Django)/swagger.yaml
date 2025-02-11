@@ -1,0 +1,804 @@
+swagger: '2.0'
+info:
+  title: API Documentation
+  description: API Documentation - E-Commerce
+  license:
+    name: MIT License
+  version: v1
+host: 127.0.0.1:8000
+schemes:
+  - http
+basePath: /
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  Basic:
+    type: basic
+security:
+  - Basic: []
+paths:
+  /auth/login/:
+    post:
+      operationId: auth_login_create
+      description: |-
+        Check the credentials and return the REST Token
+        if the credentials are valid and authenticated.
+        Calls Django Auth login method to register User ID
+        in Django session framework
+
+        Accept the following POST parameters: username, password
+        Return the REST Framework Token Object's key.
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Login'
+      responses:
+        '201':
+          description: Token generated successfully.
+          schema:
+            $ref: '#/definitions/Login'
+        '400':
+          description: Invalid credentials.
+        '500':
+          description: 'Internal server error.'
+      tags:
+        - auth
+    parameters: []
+  /auth/logout/:
+    post:
+      operationId: auth_logout_create
+      description: Accepts/Returns nothing.
+      parameters: []
+      responses:
+        '201':
+          description: Logout successful.
+        '500':
+          description: 'Internal server error.'
+      tags:
+        - auth
+    parameters: []
+  /auth/password/change/:
+    post:
+      operationId: auth_password_change_create
+      description: |-
+        Accepts the following POST parameters: new_password1, new_password2
+        Returns the success/fail message.
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PasswordChange'
+      responses:
+        '201':
+          description: Password changed successfully.
+          schema:
+            $ref: '#/definitions/PasswordChange'
+        '400':
+          description: Invalid password change request.
+        '500':
+          description: 'Internal server error.'
+      tags:
+        - auth
+    parameters: []
+  /auth/registration/:
+    post:
+      operationId: auth_registration_create
+      description: 'Create a new user registration.'
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/CustomUser'
+      responses:
+        '201':
+          description: 'User registration created successfully.'
+          schema:
+            $ref: '#/definitions/CustomUser'
+        '400':
+          description: 'Invalid request. Please check the provided data.'
+        '500':
+          description: 'Internal server error'
+      tags:
+        - auth
+    parameters: []
+  /cart-items/:
+    get:
+      operationId: cart-items_list
+      description: 'Get a list of cart items.'
+      parameters: []
+      responses:
+        '200':
+          description: 'Successful retrieval of cart items.'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CartItem'
+        '500':
+          description: 'Internal server error.'
+      tags:
+        - cart-items
+    post:
+      operationId: cart-items_create
+      description: 'Create a new cart item.'
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/CartItem'
+      responses:
+        '201':
+          description: 'Cart item created successfully.'
+          schema:
+            $ref: '#/definitions/CartItem'
+        '400':
+          description: 'Bad request. Please check the provided data.'
+        '500':
+          description: 'Internal server error.'
+      tags:
+        - cart-items
+    parameters: []
+  /cart-items/{id}/:
+    get:
+      operationId: cart-items_read
+      description: 'Get details of a specific cart item.'
+      parameters:
+        - name: id
+          in: path
+          description: 'A unique integer value identifying this cart item.'
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: 'Successful retrieval of cart item details.'
+          schema:
+            $ref: '#/definitions/CartItem'
+        '404':
+          description: 'Cart item not found.'
+        '500':
+          description: 'Internal server error.'
+      tags:
+        - cart-items
+    put:
+      operationId: cart-items_update
+      description: 'Update details of a specific cart item.'
+      parameters:
+        - name: id
+          in: path
+          description: 'A unique integer value identifying this cart item.'
+          required: true
+          type: integer
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/CartItem'
+      responses:
+        '200':
+          description: 'Cart item details updated successfully.'
+          schema:
+            $ref: '#/definitions/CartItem'
+        '400':
+          description: 'Bad request. Please check the provided data.'
+        '404':
+          description: 'Cart item not found.'
+        '500':
+          description: 'Internal server error.'
+      tags:
+        - cart-items
+    delete:
+      operationId: cart-items_delete
+      description: 'Delete a specific cart item.'
+      parameters:
+        - name: id
+          in: path
+          description: 'A unique integer value identifying this cart item.'
+          required: true
+          type: integer
+      responses:
+        '204':
+          description: 'Cart item deleted successfully.'
+        '404':
+          description: 'Cart item not found.'
+        '500':
+          description: 'Internal server error.'
+      tags:
+        - cart-items
+    parameters:
+      - name: id
+        in: path
+        description: 'A unique integer value identifying this cart item.'
+        required: true
+        type: integer
+  /carts/:
+    get:
+      operationId: carts_list
+      description: 'Get a list of carts.'
+      parameters: []
+      responses:
+        '200':
+          description: 'Successful retrieval of carts.'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Cart'
+        '500':
+          description: 'Internal server error.'
+      tags:
+        - carts
+    post:
+      operationId: carts_create
+      description: 'Create a new cart.'
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Cart'
+      responses:
+        '201':
+          description: 'Cart created successfully.'
+          schema:
+            $ref: '#/definitions/Cart'
+        '400':
+          description: 'Bad request. Please check the provided data.'
+        '500':
+          description: 'Internal server error.'
+      tags:
+        - carts
+    parameters: []
+  /carts/{id}/:
+    get:
+      operationId: carts_read
+      description: 'Get details of a specific cart.'
+      parameters:
+        - name: id
+          in: path
+          description: 'A unique integer value identifying this cart.'
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: 'Successful retrieval of cart details.'
+          schema:
+            $ref: '#/definitions/Cart'
+        '404':
+          description: 'Cart not found.'
+        '500':
+          description: 'Internal server error.'
+      tags:
+        - carts
+    put:
+      operationId: carts_update
+      description: 'Update details of a specific cart.'
+      parameters:
+        - name: id
+          in: path
+          description: 'A unique integer value identifying this cart.'
+          required: true
+          type: integer
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Cart'
+      responses:
+        '200':
+          description: 'Cart details updated successfully.'
+          schema:
+            $ref: '#/definitions/Cart'
+        '400':
+          description: 'Bad request. Please check the provided data.'
+        '404':
+          description: 'Cart not found.'
+        '500':
+          description: 'Internal server error.'
+      tags:
+        - carts
+    delete:
+      operationId: carts_delete
+      description: 'Delete a specific cart.'
+      parameters:
+        - name: id
+          in: path
+          description: 'A unique integer value identifying this cart.'
+          required: true
+          type: integer
+      responses:
+        '204':
+          description: 'Cart deleted successfully.'
+        '404':
+          description: 'Cart not found.'
+        '500':
+          description: 'Internal server error.'
+      tags:
+        - carts
+    parameters:
+      - name: id
+        in: path
+        description: A unique integer value identifying this cart.
+        required: true
+        type: integer
+  /orders/:
+    get:
+      operationId: orders_list
+      description: 'Get a list of orders.'
+      parameters: []
+      responses:
+        '200':
+          description: 'Successful retrieval of orders.'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Order'
+        '500':
+          description: 'Internal server error.'
+      tags:
+        - orders
+    post:
+      operationId: orders_create
+      description: 'Create a new order.'
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Order'
+      responses:
+        '201':
+          description: 'Order created successfully.'
+          schema:
+            $ref: '#/definitions/Order'
+        '400':
+          description: 'Bad request. Please check the provided data.'
+        '500':
+          description: 'Internal server error.'
+      tags:
+        - orders
+    parameters: []
+  /orders/{id}/:
+    get:
+      operationId: orders_read
+      description: 'Get details of a specific order.'
+      parameters:
+        - name: id
+          in: path
+          description: 'A unique integer value identifying this order.'
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: 'Successful retrieval of order details.'
+          schema:
+            $ref: '#/definitions/Order'
+        '404':
+          description: 'Order not found.'
+        '500':
+          description: 'Internal server error.'
+      tags:
+        - orders
+    put:
+      operationId: orders_update
+      description: 'Update details of a specific order.'
+      parameters:
+        - name: id
+          in: path
+          description: 'A unique integer value identifying this order.'
+          required: true
+          type: integer
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Order'
+      responses:
+        '200':
+          description: 'Order details updated successfully.'
+          schema:
+            $ref: '#/definitions/Order'
+        '400':
+          description: 'Bad request. Please check the provided data.'
+        '404':
+          description: 'Order not found.'
+        '500':
+          description: 'Internal server error.'
+      tags:
+        - orders
+    delete:
+      operationId: orders_delete
+      description: 'Delete a specific order.'
+      parameters:
+        - name: id
+          in: path
+          description: 'A unique integer value identifying this order.'
+          required: true
+          type: integer
+      responses:
+        '204':
+          description: 'Order deleted successfully.'
+        '404':
+          description: 'Order not found.'
+        '500':
+          description: 'Internal server error.'
+      tags:
+        - orders
+    parameters:
+      - name: id
+        in: path
+        description: A unique integer value identifying this order.
+        required: true
+        type: integer
+  /products/:
+    get:
+      operationId: products_list
+      description: 'Get a list of products.'
+      parameters: []
+      responses:
+        '200':
+          description: 'Successful retrieval of products.'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+        '500':
+          description: 'Internal server error.'
+      tags:
+        - products
+    post:
+      operationId: products_create
+      description: 'Create a new product.'
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Product'
+      responses:
+        '201':
+          description: 'Product created successfully.'
+          schema:
+            $ref: '#/definitions/Product'
+        '400':
+          description: 'Bad request. Please check the provided data.'
+        '500':
+          description: 'Internal server error.'
+      tags:
+        - products
+    parameters: []
+  /products/{id}/:
+    get:
+      operationId: products_read
+      description: 'Get details of a specific product.'
+      parameters:
+        - name: id
+          in: path
+          description: 'A unique integer value identifying this product.'
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: 'Successful retrieval of product details.'
+          schema:
+            $ref: '#/definitions/Product'
+        '404':
+          description: 'Product not found.'
+        '500':
+          description: 'Internal server error.'
+      tags:
+        - products
+    put:
+      operationId: products_update
+      description: 'Update details of a specific product.'
+      parameters:
+        - name: id
+          in: path
+          description: 'A unique integer value identifying this product.'
+          required: true
+          type: integer
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Product'
+      responses:
+        '200':
+          description: 'Product details updated successfully.'
+          schema:
+            $ref: '#/definitions/Product'
+        '400':
+          description: 'Bad request. Please check the provided data.'
+        '404':
+          description: 'Product not found.'
+        '500':
+          description: 'Internal server error.'
+      tags:
+        - products
+    delete:
+      operationId: products_delete
+      description: 'Delete a specific product.'
+      parameters:
+        - name: id
+          in: path
+          description: 'A unique integer value identifying this product.'
+          required: true
+          type: integer
+      responses:
+        '204':
+          description: 'Product deleted successfully.'
+        '404':
+          description: 'Product not found.'
+        '500':
+          description: 'Internal server error.'
+      tags:
+        - products
+    parameters:
+      - name: id
+        in: path
+        description: A unique integer value identifying this product.
+        required: true
+        type: integer
+  /users/:
+    get:
+      operationId: users_list
+      description: 'Get a list of users.'
+      parameters: []
+      responses:
+        '200':
+          description: 'Successful retrieval of users.'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+        '500':
+          description: 'Internal server error.'
+      tags:
+        - users
+    post:
+      operationId: users_create
+      description: 'Create a new user.'
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '201':
+          description: 'User created successfully.'
+          schema:
+            $ref: '#/definitions/User'
+        '400':
+          description: 'Bad request. Please check the provided data.'
+        '500':
+          description: 'Internal server error.'
+      tags:
+        - users
+    parameters: []
+  /users/{id}/:
+    get:
+      operationId: users_read
+      description: 'Get details of a specific user.'
+      parameters:
+        - name: id
+          in: path
+          description: 'A unique integer value identifying this user.'
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: 'Successful retrieval of user details.'
+          schema:
+            $ref: '#/definitions/User'
+        '404':
+          description: 'User not found.'
+        '500':
+          description: 'Internal server error.'
+      tags:
+        - users
+    delete:
+      operationId: users_delete
+      description: 'Delete a specific user.'
+      parameters:
+        - name: id
+          in: path
+          description: 'A unique integer value identifying this user.'
+          required: true
+          type: integer
+      responses:
+        '204':
+          description: 'User deleted successfully.'
+        '404':
+          description: 'User not found.'
+        '500':
+          description: 'Internal server error.'
+      tags:
+        - users
+    parameters:
+      - name: id
+        in: path
+        description: A unique integer value identifying this user.
+        required: true
+        type: integer
+definitions:
+  Login:
+    required:
+      - password
+    type: object
+    properties:
+      username:
+        title: Username
+        type: string
+      password:
+        title: Password
+        type: string
+        minLength: 1
+  PasswordChange:
+    required:
+      - new_password1
+      - new_password2
+    type: object
+    properties:
+      new_password1:
+        title: New password1
+        type: string
+        maxLength: 128
+        minLength: 1
+      new_password2:
+        title: New password2
+        type: string
+        maxLength: 128
+        minLength: 1
+  CustomUser:
+    required:
+      - username
+      - email
+      - password1
+      - password2
+    type: object
+    properties:
+      username:
+        title: Username
+        type: string
+        maxLength: 150
+        minLength: 1
+      email:
+        title: Email
+        type: string
+        format: email
+        minLength: 1
+      password1:
+        title: Password1
+        type: string
+        minLength: 1
+      password2:
+        title: Password2
+        type: string
+        minLength: 1
+  CartItem:
+    required:
+      - cart
+      - product
+      - quantity
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      cart:
+        title: Cart
+        type: integer
+      product:
+        title: Product
+        type: integer
+      quantity:
+        title: Quantity
+        type: integer
+        minimum: 1
+      created_at:
+        title: Created at
+        type: string
+        format: date-time
+        readOnly: true
+  Cart:
+    required:
+      - user
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      user:
+        title: User
+        type: integer
+      created_at:
+        title: Created at
+        type: string
+        format: date-time
+        readOnly: true
+      items:
+        type: array
+        items:
+          $ref: '#/definitions/CartItem'
+        readOnly: true
+  Order:
+    required:
+      - user
+      - cart
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      user:
+        title: User
+        type: integer
+      cart:
+        title: Cart
+        type: integer
+      created_at:
+        title: Created at
+        type: string
+        format: date-time
+        readOnly: true
+  Product:
+    required:
+      - name
+      - description
+      - price
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      name:
+        title: Name
+        type: string
+        maxLength: 100
+        minLength: 1
+      description:
+        title: Description
+        type: string
+        minLength: 1
+      price:
+        title: Price
+        type: string
+        format: decimal
+  User:
+    required:
+      - username
+      - email
+      - password
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      username:
+        title: Username
+        description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+        type: string
+        pattern: ^[\w.@+-]+$
+        maxLength: 150
+        minLength: 1
+      email:
+        title: Email
+        type: string
+        format: email
+        maxLength: 254
+        minLength: 1
+      password:
+        title: Password
+        type: string
+        maxLength: 128
+        minLength: 1
