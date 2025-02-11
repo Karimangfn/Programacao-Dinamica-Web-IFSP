@@ -41,12 +41,12 @@ A disciplina Programação Dinâmica Web aprofunda os conhecimentos acerca do de
 
 Para acessar os repositórios com os códigos fonte dos projetos, basta clicar no link correspondente:
 
-- [Atividade 1]()
-- [Atividade 2]()
-- [Atividade 3]()
-- [Atividade 4]()
-- [Atividade 5]()
-- [Projeto - REST API (E-Commerce - Django)]()
+- [Atividade 1](https://github.com/Karimangfn/Programacao-Dinamica-Web-IFSP/tree/main/Atividades/Atividade%201)
+- [Atividade 2](https://github.com/Karimangfn/Programacao-Dinamica-Web-IFSP/tree/main/Atividades/Atividade%202)
+- [Atividade 3](https://github.com/Karimangfn/Programacao-Dinamica-Web-IFSP/tree/main/Atividades/Atividade%203)
+- [Atividade 4](https://github.com/Karimangfn/Programacao-Dinamica-Web-IFSP/tree/main/Atividades/Atividade%204)
+- [Atividade 5](https://github.com/Karimangfn/Programacao-Dinamica-Web-IFSP/tree/main/Atividades/Atividade%205)
+- [Projeto - REST API (E-Commerce - Django)](https://github.com/Karimangfn/Programacao-Dinamica-Web-IFSP/tree/main/Projeto%20-%20REST%20API%20(E-Commerce%20-%20Django))
 </p>
 
 ## ▶️ Como Executar Arquivos Web (HTML, CSS, JS)
