@@ -51,22 +51,21 @@ Para acessar os repositórios com os códigos fonte dos projetos, basta clicar n
 
 ## ▶️ Como Executar Arquivos PHP  
 
-Diferente de arquivos HTML, o PHP precisa ser processado por um servidor. Veja abaixo as formas de executar arquivos PHP corretamente.  
-
-### 🔹 Método 1: Usando o Servidor Embutido do PHP (Recomendado)  
-
 Se o PHP estiver instalado, use o servidor embutido para rodar os arquivos:  
 
+1. Navegue até a pasta do arquivo PHP  
 ```bash
-# Navegue até a pasta do arquivo PHP  
 cd /caminho/para/seu/projeto  
 
-# Inicie o servidor local do PHP  
-php -S localhost:8000  
+2. Inicie o servidor local do PHP
+```sh
+php -S localhost:8000
+```
 
-# Acesse o arquivo pelo navegador  
-# Abra o navegador e digite:  
-# http://localhost:8000/arquivo.php
+3. Abra o navegador e digite:
+```sh
+http://localhost:8000/arquivo.php
+```
     
 ## 🚀 Tecnologias
 
